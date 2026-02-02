@@ -1,0 +1,62 @@
+[project]
+name = "gata-inference"
+authors = [
+    {name = "Dave Hall", email = "skwashd@gmail.com"},
+]
+description = "Recommend Zendesk ticket categories using a finetuned Hugging Face BERT model"
+
+dependencies = [
+  "fastapi==0.128.0",
+  "torch==2.10.0",
+  "transformers[torch]==5.0.0",
+  "uvicorn==0.40.0",
+]
+
+requires-python = "~=3.14.0"
+
+readme = "README.md"
+
+dynamic = ["version"]
+
+[dependency-groups]
+dev = [
+  "coverage==7.13.2",
+  "fastapi[standard]==0.128.0", # Include the extras we need when running locally
+  "pytest==9.0.2",
+  "ruff==0.14.11",
+  "ty==0.0.14",
+]
+
+[build-system]
+requires = [
+    "hatchling==1.28.0",
+    "hatch-vcs==0.5.0",
+]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/"]
+
+[tool.hatch.version]
+source = "vcs"
+
+[tool.hatch.version.raw-options]
+search_parent_directories = true
+
+[tool.coverage.report]
+omit = [
+  "$TMPDIR/*",
+  "src/main.py",
+]
+
+[tool.ruff.lint]
+# Rules listed at https://github.com/charliermarsh/ruff#supported-rules
+select = ["B", "D", "E", "F", "G", "I", "N", "S", "W", "ANN" ,"BLE", "C4", "C90", "DTZ", "ERA", "PLW", "PT", "RET", "RUF", "SIM", "TRY", "UP"]
+ignore = ["D203", "D211", "D212", "E501", "F403", "F405"]
+
+# Allow autofix for all enabled rules (when `--fix`) is provided.
+fixable = ["B", "D", "E", "F", "G", "I", "N", "S", "W", "ANN" ,"BLE", "C4", "C90", "DTZ", "ERA", "PLW", "PT", "RET", "RUF", "SIM", "TRY", "UP"]
+unfixable = []
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["S101", "S108"]
