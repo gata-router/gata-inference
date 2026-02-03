@@ -20,7 +20,7 @@ dynamic = ["version"]
 
 [dependency-groups]
 dev = [
-  "coverage==7.13.2",
+  "coverage==7.13.3",
   "fastapi[standard]==0.128.0", # Include the extras we need when running locally
   "pytest==9.0.2",
   "ruff==0.14.14",
