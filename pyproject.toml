@@ -24,7 +24,7 @@ dev = [
   "fastapi[standard]==0.128.0", # Include the extras we need when running locally
   "pytest==9.0.2",
   "ruff==0.15.0",
-  "ty==0.0.14",
+  "ty==0.0.15",
 ]
 
 [build-system]
