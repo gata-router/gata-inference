@@ -8,7 +8,7 @@ description = "Recommend Zendesk ticket categories using a finetuned Hugging Fac
 dependencies = [
   "fastapi==0.128.0",
   "torch==2.10.0",
-  "transformers[torch]==5.0.0",
+  "transformers[torch]==5.1.0",
   "uvicorn==0.40.0",
 ]
 
