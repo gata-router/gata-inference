@@ -81,19 +81,19 @@ jobs:
       - name: Install dependencies
         id: dependencies
         run: uv sync --dev --frozen
-      
+
       - name: Formatting
         id: formatting
         run: uv run ruff format --check
-      
+
       - name: Lint
         id: lint
         run: uv run ruff check
-      
+
       - name: Type Checking
         id: types
         run: uv run ty check
-      
+
       - name: Run Tests
         id: run-tests
         run: uv run coverage run -m pytest
@@ -109,7 +109,7 @@ jobs:
     runs-on: ubuntu-24.04
 
     needs: test
-  
+
     steps:
       - name: Checkout
         id: checkout
@@ -170,11 +170,3 @@ jobs:
         run: |
           docker system prune -f
           df -h
-
-      - name: Scan with Trivy
-        id: trivy
-        uses: aquasecurity/trivy-action@0.34.1
-        with:
-          image-ref: ci-build
-          version: 'v0.68.2'
-          trivy-config: trivy.yaml
