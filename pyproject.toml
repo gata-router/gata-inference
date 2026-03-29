@@ -23,8 +23,8 @@ dev = [
   "coverage==7.13.5",
   "fastapi[standard]==0.135.1", # Include the extras we need when running locally
   "pytest==9.0.2",
-  "ruff==0.15.7",
-  "ty==0.0.24",
+  "ruff==0.15.8",
+  "ty==0.0.26",
 ]
 
 [build-system]
