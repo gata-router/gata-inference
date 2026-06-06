@@ -7,6 +7,8 @@ updates:
       time: "02:34"
       timezone: "Australia/Melbourne"
     open-pull-requests-limit: 10
+    cooldown:
+      default-days: 1
     groups:
       qa:
         patterns:
@@ -20,3 +22,5 @@ updates:
       time: "03:45"
       timezone: "Australia/Melbourne"
     open-pull-requests-limit: 5
+    cooldown:
+      default-days: 1
