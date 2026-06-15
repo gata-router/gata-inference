@@ -22,7 +22,7 @@ dynamic = ["version"]
 dev = [
   "coverage==7.14.1",
   "fastapi[standard]==0.136.3", # Include the extras we need when running locally
-  "pytest==9.0.3",
+  "pytest==9.1.0",
   "ruff==0.15.16",
   "ty==0.0.44",
 ]
