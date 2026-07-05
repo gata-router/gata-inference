@@ -4,6 +4,7 @@ authors = [
     {name = "Dave Hall", email = "skwashd@gmail.com"},
 ]
 description = "Recommend Zendesk ticket categories using a finetuned Hugging Face BERT model"
+license = {text = "MIT"}
 
 dependencies = [
   "fastapi==0.136.3",
@@ -43,11 +44,8 @@ source = "vcs"
 [tool.hatch.version.raw-options]
 search_parent_directories = true
 
-[tool.coverage.report]
-omit = [
-  "$TMPDIR/*",
-  "src/main.py",
-]
+[tool.coverage.run]
+source = ["src"]
 
 [tool.ruff.lint]
 # Rules listed at https://github.com/charliermarsh/ruff#supported-rules
