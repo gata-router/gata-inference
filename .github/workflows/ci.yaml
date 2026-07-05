@@ -112,9 +112,7 @@ jobs:
 
       - name: Coverage Report
         id: coverage
-        run: |
-          # Currently busted on GitHub Actions runner
-          uv run coverage report --show-missing || true
+        run: uv run coverage report --show-missing
 
 
   docker:

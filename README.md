@@ -117,40 +117,21 @@ To deploy as a SageMaker endpoint:
 The deployment process is automated using the [Gata Infrastructure Terraform module](https://github.com/gata-router/terraform-aws-gata).
 
 
-## Setting Up Continuous Deployment
+## Releases
 
-The repository includes a GitHub Actions workflow (`.github/workflows/release.yaml.txt`) for automated builds and deployments to your AWS environment. This workflow is disabled by default - you must enable and configure it.
+Pushing a tag in `YYYYMMDDHH` format publishes the image to GHCR. A weekly scheduled build picks up base image updates. Provenance attestations are pushed alongside every image.
 
-**Prerequisites:**
+```sh
+git tag 2026010203
+git push origin 2026010203
+```
 
-1. Deploy the [Gata Infrastructure](https://github.com/gata-router/terraform-aws-gata) Terraform stack, which provisions:
-   - IAM role for GitHub Actions
-   - OIDC provider configuration for GitHub
-   - ECR repository
-   - SSM parameter for image tags
+The workflow can also push to your ECR repository and update the SSM parameter Gata reads the image tag from. That half only runs when the AWS configuration exists in the repository settings:
 
-**Setup Steps:**
+- Secrets: `AWS_ROLE_ARN` (from the `github_actions_role_arns` output of the [Gata Terraform module](https://github.com/gata-router/terraform-aws-gata)) and `AWS_ECR_IMAGE` (the ECR image URL)
+- Variables: `AWS_REGION` and `AWS_SSM_PARAMETER` (the image version parameter path)
 
-1. Copy the workflow file to enable it:
-   ```sh
-   cp .github/workflows/release.yaml.txt .github/workflows/release.yaml
-   ```
-
-2. Configure the following GitHub repository variables in Settings → Secrets and variables → Actions → Variables:
-   - `AWS_REGION` - Your AWS region. `us-east-1` is currently the only region supported by Gata.
-   - `ECR_REPOSITORY` - Docker URL of your ECR repository
-
-3. Configure the following GitHub repository secrets in Settings → Secrets and variables → Actions → Secrets:
-   - `AWS_ROLE_ARN` - IAM role ARN from Terraform outputs (for OIDC authentication)
-   - `SSM_PARAMETER_NAME` - Full path of the SSM parameter for storing the current image tag
-
-4. Tag your release using the YYYYMMDDHH format to trigger the workflow:
-   ```sh
-   git tag 2026010203
-   git push origin 2026010203
-   ```
-
-The workflow will build the Docker image, push it to ECR, and update the SSM parameter with the new image tag.
+Forks without these settings still publish to their own GHCR namespace.
 
 ## Environment Variables
 

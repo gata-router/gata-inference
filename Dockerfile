@@ -36,7 +36,7 @@ RUN set -ex; \
 
 FROM public.ecr.aws/chainguard/python:latest
 
-LABEL org.opencontainers.image.source=https://github.com/ata-router/gata-inference
+LABEL org.opencontainers.image.source=https://github.com/gata-router/gata-inference
 LABEL org.opencontainers.image.description="Gata router ticket model inference."
 LABEL org.opencontainers.image.licenses=MIT
 
